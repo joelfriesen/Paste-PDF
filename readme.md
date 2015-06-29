@@ -1,3 +1,4 @@
+A sublime text plugin for regex find and replace on 'paste special'.
 
 Copy and paste from the Thrifty's PDF into the online flyer. 
 

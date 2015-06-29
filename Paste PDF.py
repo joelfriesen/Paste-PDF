@@ -234,13 +234,6 @@ def clean_paste(data):
 # All done
     return data
 
-
-# to transfer cleaned data and put in double quotes with a footnote prepared in Pandoc notation.
-def pandoc_clean_paste(data):
-    paste_block = clean_paste(data)
-    data = "\"" + paste_block + "\"^[]"
-    return data
-
 # Paste PDF Function
 class PastePdf(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -249,14 +242,3 @@ class PastePdf(sublime_plugin.TextCommand):
         self.view.run_command('paste')
 
 
-class PastePdfPandoc(sublime_plugin.TextCommand):
-    def run(self, edit):
-        old_clipboard = sublime.get_clipboard()
-        sublime.set_clipboard(pandoc_clean_paste(old_clipboard))
-        self.view.run_command('paste')
-        sublime.set_clipboard(old_clipboard)
-        (row, col) = self.view.rowcol(self.view.sel()[0].begin())
-        target = self.view.text_point(row, col-1)
-        self.view.sel().clear()
-        self.view.sel().add(sublime.Region(target))
-        self.view.show(target)
