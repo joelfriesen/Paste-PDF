@@ -18,6 +18,7 @@ def clean_paste(data):
     data = data.replace(u'–', '-')
     data = data.replace(u'–', '-')
     data = data.replace(u'+', u'&plus;')
+    data = data.replace(u'°', u'&deg;')
 
     # Accents and weird characters 
 
